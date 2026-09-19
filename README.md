@@ -1,7 +1,5 @@
 # Darukaa.Earth — AI Biodiversity Intelligence Chatbot
 
-## Why this design
-
 The brief explicitly penalizes "generic LLM-only solutions" and single-variable answers, and
 rewards a retrievable knowledge layer plus multi-metric causal reasoning. So instead of
 putting facts in a prompt, this system separates three concerns:
