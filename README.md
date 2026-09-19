@@ -1,9 +1,5 @@
 # Darukaa.Earth — AI Biodiversity Intelligence Chatbot
 
-An AI system that reasons like an environmental scientist about soil, water, land use and
-biodiversity — not a generic LLM wrapper. Built for the Darukaa.Earth Hackathon Challenge
-(AI Engineer Internship, Climate-Tech & Nature Intelligence).
-
 ## Why this design
 
 The brief explicitly penalizes "generic LLM-only solutions" and single-variable answers, and
