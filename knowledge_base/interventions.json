@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Structured knowledge base of evidence-backed land, soil, water and biodiversity interventions. Each record encodes applicability conditions, causal mechanism, quantified impact ranges, source attribution, and confidence — designed to be retrieved (via src/knowledge_retriever.py) rather than hard-coded into prompts.",
+    "note_on_sources": "Figures are drawn from widely-cited ranges published by FAO, IPCC, CBD and peer-reviewed meta-analyses (e.g. Rodale Institute, Project Drawdown). Ranges are directional/illustrative rather than site-specific measurements. Before production use, verify each figure against the primary study, since real-world outcomes vary strongly by soil type, climate and baseline degradation."
+  },
+  "interventions": [
+    {
+      "id": "kb001",
+      "title": "Legume-based cover cropping",
+      "categories": ["soil_health", "biodiversity"],
+      "applicable_conditions": {
+        "soil_organic_carbon_max": 1.2,
+        "land_use": ["monoculture", "cropland", "arable"],
+        "rainfall": ["low", "medium", "high"]
+      },
+      "mechanism": "Legumes fix atmospheric nitrogen via rhizobia symbiosis and add root biomass and residue between cash-crop cycles, feeding soil microbial communities and increasing aggregate stability.",
+      "quantified_impact": [
+        {"metric": "soil_organic_carbon", "change": "+15% to +25%", "timeframe": "2-3 years", "confidence": "high"},
+        {"metric": "soil_microbial_diversity", "change": "increase (moderate-high)", "timeframe": "1-3 years", "confidence": "medium"},
+        {"metric": "pollinator_abundance", "change": "increase (flowering cover crops only)", "timeframe": "1 season", "confidence": "medium"}
+      ],
+      "linked_metrics": ["soil_organic_carbon", "microbial_diversity", "pollinator_support", "species_richness"],
+      "source": "FAO Soils Portal — Soil Organic Carbon guidance; FAO 'Conservation Agriculture' technical briefs",
+      "time_horizon": "medium_term",
+      "confidence": "high"
+    },
+    {
+      "id": "kb002",
+      "title": "Agroforestry / intercropping (tree-crop integration)",
+      "categories": ["soil_health", "biodiversity", "land_use", "climate"],
+      "applicable_conditions": {
+        "land_use": ["monoculture", "cropland", "wheat", "arable"],
+        "rainfall": ["low", "semi_arid", "medium"]
+      },
+      "mechanism": "Woody perennials add deep-rooted carbon inputs and leaf litter, buffer topsoil microclimate (reduced evapotranspiration and wind erosion), and create vertical habitat structure that supports insects, birds and soil fauna absent in monocultures.",
+      "quantified_impact": [
+        {"metric": "soil_organic_carbon", "change": "+10% to +30% over baseline", "timeframe": "3-5 years", "confidence": "medium-high"},
+        {"metric": "species_richness", "change": "20-60% higher than adjacent monoculture plots", "timeframe": "3-5 years", "confidence": "medium"},
+        {"metric": "water_retention", "change": "improved infiltration, reduced runoff", "timeframe": "1-3 years", "confidence": "medium"},
+        {"metric": "microclimate_temperature", "change": "canopy cooling of 1-3°C at soil surface", "timeframe": "immediate-1 year", "confidence": "medium"}
+      ],
+      "linked_metrics": ["soil_organic_carbon", "habitat_structure", "species_richness", "microclimate", "yield_resilience"],
+      "source": "FAO Agroforestry Working Papers; IPCC AR6 WG2 (agricultural adaptation chapter)",
+      "time_horizon": "medium_term",
+      "confidence": "high"
+    },
+    {
+      "id": "kb003",
+      "title": "Native riparian buffer strips",
+      "categories": ["biodiversity", "human_impact", "land_use"],
+      "applicable_conditions": {
+        "land_use": ["cropland", "pasture", "near_waterbody"],
+        "human_impact": ["agricultural_runoff", "pollution"]
+      },
+      "mechanism": "Vegetated strips along waterways filter nutrient and sediment runoff before it reaches water bodies, and provide continuous habitat corridors that counteract fragmentation caused by adjacent farmland.",
+      "quantified_impact": [
+        {"metric": "nutrient_runoff", "change": "-30% to -60% nitrogen/phosphorus loading", "timeframe": "1-3 years", "confidence": "high"},
+        {"metric": "habitat_connectivity", "change": "significant increase along corridor length", "timeframe": "immediate-1 year", "confidence": "high"},
+        {"metric": "aquatic_species_richness", "change": "increase, especially macroinvertebrates and fish", "timeframe": "2-5 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["water_quality", "habitat_connectivity", "species_richness"],
+      "source": "USDA NRCS riparian buffer studies; CBD guidance on freshwater ecosystem connectivity",
+      "time_horizon": "short_to_medium_term",
+      "confidence": "high"
+    },
+    {
+      "id": "kb004",
+      "title": "No-till / reduced tillage",
+      "categories": ["soil_health"],
+      "applicable_conditions": {
+        "land_use": ["cropland", "monoculture"],
+        "soil_organic_carbon_max": 1.5
+      },
+      "mechanism": "Avoiding mechanical soil inversion preserves fungal hyphal networks and soil aggregate structure, slowing organic carbon oxidation and reducing erosion-driven topsoil loss.",
+      "quantified_impact": [
+        {"metric": "soil_organic_carbon", "change": "+0.1 to +0.3 tonnes C/ha/year", "timeframe": "5-10 years (cumulative)", "confidence": "medium"},
+        {"metric": "soil_erosion", "change": "-50% to -90% surface erosion", "timeframe": "1-2 years", "confidence": "high"}
+      ],
+      "linked_metrics": ["soil_organic_carbon", "soil_structure", "erosion"],
+      "source": "FAO Conservation Agriculture program data; IPCC AR6 WG3 agricultural mitigation chapter",
+      "time_horizon": "long_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb005",
+      "title": "Diversified crop rotation (beyond 2-crop cycles)",
+      "categories": ["soil_health", "biodiversity"],
+      "applicable_conditions": {
+        "land_use": ["monoculture", "cropland"]
+      },
+      "mechanism": "Rotating functionally different crops (e.g. cereal-legume-brassica) disrupts pest and pathogen life cycles, diversifies root exudate chemistry, and reduces reliance on synthetic inputs.",
+      "quantified_impact": [
+        {"metric": "pest_pressure", "change": "-20% to -50% depending on rotation length", "timeframe": "1-3 years", "confidence": "medium"},
+        {"metric": "soil_microbial_diversity", "change": "increase", "timeframe": "2-4 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["soil_health", "microbial_diversity", "pest_resilience"],
+      "source": "FAO 'Save and Grow' sustainable intensification report",
+      "time_horizon": "medium_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb006",
+      "title": "Hedgerows and field-margin restoration",
+      "categories": ["biodiversity", "land_use"],
+      "applicable_conditions": {
+        "land_use": ["monoculture", "cropland", "pasture"]
+      },
+      "mechanism": "Woody and flowering field margins provide nesting habitat and forage for pollinators and natural pest predators, and act as stepping-stone habitat that reduces functional fragmentation between larger habitat patches.",
+      "quantified_impact": [
+        {"metric": "pollinator_abundance", "change": "+30% to +80% near margins", "timeframe": "1-2 years", "confidence": "medium-high"},
+        {"metric": "natural_pest_control", "change": "measurable increase in predatory arthropods", "timeframe": "1-2 years", "confidence": "medium"},
+        {"metric": "habitat_fragmentation", "change": "reduced, via stepping-stone connectivity", "timeframe": "1-3 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["habitat_connectivity", "species_richness", "pollinator_support"],
+      "source": "CBD Agricultural Biodiversity technical briefs; European Commission farmland biodiversity studies",
+      "time_horizon": "short_to_medium_term",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "kb007",
+      "title": "Rotational (managed) grazing",
+      "categories": ["soil_health", "land_use", "biodiversity"],
+      "applicable_conditions": {
+        "land_use": ["pasture", "grassland", "rangeland"]
+      },
+      "mechanism": "Time-controlled rotation between paddocks prevents overgrazing of any single area, allowing root systems to recover between grazing events, which increases root carbon deposition and grass species diversity.",
+      "quantified_impact": [
+        {"metric": "soil_organic_carbon", "change": "+5% to +15% over set-stocked grazing", "timeframe": "3-5 years", "confidence": "medium"},
+        {"metric": "vegetation_species_richness", "change": "increase in native grass/forb diversity", "timeframe": "2-4 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["soil_organic_carbon", "species_richness", "grassland_resilience"],
+      "source": "FAO grassland management guidance; Project Drawdown 'Managed Grazing' analysis",
+      "time_horizon": "medium_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb008",
+      "title": "Wetland restoration / rehydration",
+      "categories": ["biodiversity", "climate", "human_impact"],
+      "applicable_conditions": {
+        "land_use": ["degraded_wetland", "near_waterbody"],
+        "human_impact": ["drainage", "pollution"]
+      },
+      "mechanism": "Restoring hydrology in drained wetlands re-establishes anaerobic soil conditions that store carbon, filters pollutants, and recreates specialized habitat that supports disproportionately high biodiversity relative to area.",
+      "quantified_impact": [
+        {"metric": "carbon_sequestration", "change": "high per-hectare sequestration versus degraded state", "timeframe": "5-10 years", "confidence": "medium"},
+        {"metric": "species_richness", "change": "substantial increase, especially waterfowl and amphibians", "timeframe": "2-5 years", "confidence": "medium-high"}
+      ],
+      "linked_metrics": ["water_availability", "species_richness", "carbon_storage"],
+      "source": "IPCC Wetlands Supplement (2013); CBD wetland ecosystem guidance",
+      "time_horizon": "medium_to_long_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb009",
+      "title": "Mixed-species native reforestation (vs. monoculture plantation)",
+      "categories": ["biodiversity", "climate", "land_use"],
+      "applicable_conditions": {
+        "land_use": ["degraded_land", "deforested", "monoculture_plantation"]
+      },
+      "mechanism": "Multiple native species create structurally and functionally diverse canopy layers, supporting a wider range of niches than single-species plantations, and are more resilient to pest outbreaks and climate stress.",
+      "quantified_impact": [
+        {"metric": "species_richness", "change": "markedly higher than monoculture plantations of equal age", "timeframe": "5-10 years", "confidence": "high"},
+        {"metric": "habitat_fragmentation", "change": "reduced when planted as corridors between existing patches", "timeframe": "5+ years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["species_richness", "habitat_connectivity", "climate_resilience"],
+      "source": "IPBES Global Assessment (2019); FAO Forest Landscape Restoration guidance",
+      "time_horizon": "long_term",
+      "confidence": "high"
+    },
+    {
+      "id": "kb010",
+      "title": "Biochar soil amendment",
+      "categories": ["soil_health", "climate"],
+      "applicable_conditions": {
+        "soil_organic_carbon_max": 1.0,
+        "land_use": ["cropland", "degraded_land"]
+      },
+      "mechanism": "Pyrolyzed organic matter is chemically stable in soil for centuries, directly raising measured soil carbon while its porous structure improves water-holding capacity and provides microhabitat for beneficial microbes.",
+      "quantified_impact": [
+        {"metric": "soil_organic_carbon", "change": "durable increase, magnitude depends on application rate", "timeframe": "immediate, persists decades+", "confidence": "medium"},
+        {"metric": "water_holding_capacity", "change": "+15% to +20% in sandy/degraded soils", "timeframe": "1 year", "confidence": "medium"}
+      ],
+      "linked_metrics": ["soil_organic_carbon", "water_retention", "microbial_habitat"],
+      "source": "IPCC AR6 WG3 (carbon dioxide removal chapter); IBI (International Biochar Initiative) technical guidance",
+      "time_horizon": "long_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb011",
+      "title": "Integrated pest management (IPM) / reduced pesticide reliance",
+      "categories": ["biodiversity", "human_impact"],
+      "applicable_conditions": {
+        "human_impact": ["pesticide_use", "pollution"]
+      },
+      "mechanism": "Substituting broad-spectrum pesticide applications with biological controls, monitoring thresholds and targeted intervention reduces non-target mortality of pollinators, soil fauna and natural predators.",
+      "quantified_impact": [
+        {"metric": "pollinator_abundance", "change": "measurable recovery within 1-2 seasons of reduced broad-spectrum use", "timeframe": "1-2 seasons", "confidence": "medium"},
+        {"metric": "soil_invertebrate_diversity", "change": "increase", "timeframe": "1-3 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["pollinator_support", "soil_biodiversity", "human_impact"],
+      "source": "FAO IPM guidance; IPBES Pollinators Assessment (2016)",
+      "time_horizon": "short_to_medium_term",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "kb012",
+      "title": "Rainwater harvesting / check dams (semi-arid water management)",
+      "categories": ["climate", "soil_health", "biodiversity"],
+      "applicable_conditions": {
+        "rainfall": ["low", "semi_arid"],
+        "land_use": ["cropland", "degraded_land"]
+      },
+      "mechanism": "Small-scale water-harvesting structures slow surface runoff, increase groundwater recharge and extend soil moisture availability into dry periods, which is frequently the limiting factor for both crop and native vegetation survival in semi-arid systems.",
+      "quantified_impact": [
+        {"metric": "soil_moisture", "change": "extended availability into dry season", "timeframe": "1 season onward", "confidence": "medium"},
+        {"metric": "vegetation_cover", "change": "increase in downstream catchment", "timeframe": "1-3 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["water_availability", "vegetation_cover", "species_survival"],
+      "source": "FAO water-harvesting technical manuals; IPCC AR6 WG2 (water security chapter)",
+      "time_horizon": "short_to_medium_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb013",
+      "title": "Organic mulching",
+      "categories": ["soil_health", "climate"],
+      "applicable_conditions": {
+        "rainfall": ["low", "semi_arid", "medium"],
+        "land_use": ["cropland"]
+      },
+      "mechanism": "A surface layer of organic residue reduces soil evaporation, buffers surface temperature extremes, and gradually decomposes to add organic matter.",
+      "quantified_impact": [
+        {"metric": "soil_moisture", "change": "-20% to -40% evaporative loss", "timeframe": "immediate-1 season", "confidence": "medium-high"},
+        {"metric": "soil_organic_carbon", "change": "gradual increase as residue decomposes", "timeframe": "1-3 years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["soil_moisture", "soil_organic_carbon", "microclimate"],
+      "source": "FAO conservation agriculture technical briefs",
+      "time_horizon": "short_term",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "kb014",
+      "title": "Silvopasture (integrating trees into grazing land)",
+      "categories": ["land_use", "biodiversity", "climate"],
+      "applicable_conditions": {
+        "land_use": ["pasture", "grassland", "rangeland"]
+      },
+      "mechanism": "Combining trees with livestock grazing adds a vertical habitat layer, provides shade that reduces heat stress on livestock and understory vegetation, and adds deep root carbon inputs absent from open pasture.",
+      "quantified_impact": [
+        {"metric": "species_richness", "change": "increase vs open pasture, especially birds and insects", "timeframe": "3-5 years", "confidence": "medium"},
+        {"metric": "soil_organic_carbon", "change": "increase from tree root and litter inputs", "timeframe": "5+ years", "confidence": "medium"}
+      ],
+      "linked_metrics": ["species_richness", "soil_organic_carbon", "climate_resilience"],
+      "source": "FAO Agroforestry Working Papers; Project Drawdown 'Silvopasture' analysis",
+      "time_horizon": "long_term",
+      "confidence": "medium"
+    },
+    {
+      "id": "kb015",
+      "title": "Habitat corridors to reduce fragmentation",
+      "categories": ["land_use", "biodiversity"],
+      "applicable_conditions": {
+        "land_use": ["fragmented_habitat", "mixed_use"]
+      },
+      "mechanism": "Connecting isolated habitat patches with vegetated corridors allows gene flow, seasonal migration and recolonization after local extinction events, directly counteracting the population-isolation effects of fragmentation.",
+      "quantified_impact": [
+        {"metric": "genetic_diversity", "change": "improved via increased gene flow between patches", "timeframe": "multi-generational (years-decades)", "confidence": "medium"},
+        {"metric": "species_persistence", "change": "reduced local extinction risk in small patches", "timeframe": "long-term", "confidence": "high"}
+      ],
+      "linked_metrics": ["habitat_connectivity", "species_richness", "genetic_diversity"],
+      "source": "IPBES Global Assessment (2019); landscape ecology meta-analyses on corridor efficacy",
+      "time_horizon": "long_term",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Darukaa.Earth — Biodiversity Intelligence</title>
+<style>
+  :root {
+    --bg: #0f1a14; --panel: #16241c; --accent: #4caf7d; --text: #e8f0ea; --muted: #8fa89a;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { padding: 20px 24px; border-bottom: 1px solid #223a2c; }
+  header h1 { margin:0; font-size: 1.25rem; }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
+  #chat { max-width: 780px; margin: 0 auto; padding: 20px; display:flex; flex-direction:column; gap:14px; min-height: 60vh; }
+  .msg { padding: 12px 16px; border-radius: 10px; white-space: pre-wrap; line-height:1.5; font-size:0.95rem; }
+  .user { align-self: flex-end; background: var(--accent); color:#04140a; max-width: 80%; }
+  .system { align-self: flex-start; background: var(--panel); border: 1px solid #223a2c; max-width: 90%; }
+  #inputbar { max-width: 780px; margin: 0 auto 24px; padding: 0 20px; display:flex; gap:8px; }
+  #inputbar input { flex:1; padding: 12px 14px; border-radius: 8px; border: 1px solid #223a2c; background: var(--panel); color: var(--text); font-size: 0.95rem; }
+  #inputbar button { padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent); color: #04140a; font-weight:600; cursor:pointer; }
+  #inputbar button:hover { opacity:0.9; }
+  .hint { max-width: 780px; margin: 0 auto; padding: 0 20px 8px; color: var(--muted); font-size: 0.82rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🌱 Darukaa.Earth — AI Biodiversity Intelligence</h1>
+  <p>Knowledge-grounded, multi-metric reasoning over soil, water, land use and biodiversity.</p>
+</header>
+<div class="hint">Try: "Soil organic carbon is 0.3%, rainfall is low, monoculture wheat, semi-arid region"</div>
+<div id="chat"></div>
+<div id="inputbar">
+  <input id="msgInput" type="text" placeholder="Describe your land / ecosystem conditions..." />
+  <button id="sendBtn">Send</button>
+</div>
+
+<script>
+let sessionId = null;
+const chat = document.getElementById('chat');
+const input = document.getElementById('msgInput');
+const btn = document.getElementById('sendBtn');
+
+function addMessage(text, cls) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + cls;
+  div.textContent = text;
+  chat.appendChild(div);
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+async function send() {
+  const text = input.value.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  input.value = '';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, text })
+    });
+    const data = await res.json();
+    sessionId = data.session_id;
+    addMessage(data.message, 'system');
+  } catch (e) {
+    addMessage('Error reaching the server: ' + e, 'system');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+btn.addEventListener('click', send);
+input.addEventListener('keydown', (e) => { if (e.key === 'Enter') send(); });
+
+addMessage("Hi — tell me about the land or ecosystem you're concerned about (soil carbon, rainfall, land use, region), and I'll suggest evidence-backed interventions.", 'system');
+</script>
+</body>
+</html>
